@@ -1,4 +1,17 @@
-kayfa project/
+
+
+
+## Project Structure
+
+All team members should follow the agreed project structure below
+as closely as possible.
+
+New files or folders should only be added when required by the
+implementation, and should be placed in the appropriate existing
+module.
+
+```text
+kayfa-content-approval-pipeline/
 │
 ├── app/                              # Member 4 — Streamlit
 │   ├── Home.py
@@ -54,7 +67,6 @@ kayfa project/
 │       └── runner.py
 │
 ├── data/
-│   │
 │   ├── knowledge_base/               # Member 2
 │   │   ├── brand_style_guide.md
 │   │   ├── approved_examples/
@@ -66,7 +78,7 @@ kayfa project/
 │   │       ├── brief_02.md
 │   │       └── poisoned_brief.md
 │   │
-│   └── eval/                         # Evaluation dataset
+│   └── eval/
 │       ├── test_briefs.md
 │       └── expected_results.json
 │
@@ -86,10 +98,38 @@ kayfa project/
 │   └── test_workflow.py
 │
 ├── automation/
-│   └── workflow.json                 # n8n
+│   └── workflow.json
 │
 ├── README.md
 ├── requirements.txt
+├── pytest.ini
 ├── .env.example
 ├── .gitignore
 └── .env                              # NEVER commit
+
+
+## Agent Workflow — Member 1
+
+The central workflow is implemented using LangGraph.
+
+### Workflow
+
+```mermaid
+flowchart TD
+    A[Brief Submitted] --> B[Drafter]
+    B --> C[Style Critic]
+    C --> D[Human Review]
+
+    D -->|Approve| E[Publisher]
+    E --> F[Published Markdown]
+
+    D -->|Reject| G[Reviser]
+    G --> C
+
+    D -->|Edit| H[Apply Human Edit]
+    H --> C
+
+    D -->|Reject at MAX_REVISIONS| I[Escalation]
+    I --> J[END]
+
+    D -.->|HITL Interrupt| D
