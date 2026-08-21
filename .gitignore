@@ -35,3 +35,6 @@ data/published/
 # Temporary files
 *.tmp
 *.temp
+# Retrieval runtime data
+logs/
+storage/

@@ -1,13 +1,25 @@
+# =========================
+# Core
+# =========================
 pydantic>=2.7,<3
 python-dotenv>=1.0,<2
 PyYAML>=6.0,<7
 
+# =========================
+# LLM / LangChain
+# =========================
 langchain-core>=0.3,<2
 langchain-openai>=0.3,<2
 
+# =========================
+# LangGraph
+# =========================
 langgraph>=0.6,<2
 langgraph-checkpoint-sqlite>=2.0,<4
 
+# =========================
+# LlamaIndex / Retrieval
+# =========================
 llama-index>=0.12,<1
 llama-index-core>=0.12,<1
 llama-index-llms-openai>=0.4,<1
@@ -17,12 +29,25 @@ llama-index-embeddings-huggingface>=0.3,<1
 llama-index-vector-stores-chroma>=0.3,<1
 chromadb>=0.5,<1
 
+# =========================
+# FastAPI
+# =========================
 fastapi>=0.115,<1
 uvicorn[standard]>=0.30,<1
 
+# =========================
+# Streamlit
+# =========================
 streamlit>=1.40,<2
+
+# =========================
+# HTTP / Utilities
+# =========================
 httpx>=0.27,<1
+tiktoken>=0.8,<1
+
+# =========================
+# Testing
+# =========================
 pytest>=8,<9
 pytest-asyncio>=0.24,<1
-
-tiktoken>=0.8,<1
